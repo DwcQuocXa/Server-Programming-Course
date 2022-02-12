@@ -2,6 +2,9 @@ package com.example.demo;
 
 import com.example.demo.domain.Book;
 import com.example.demo.domain.BookRepository;
+import com.example.demo.domain.Category;
+import com.example.demo.domain.CategoryRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,7 +21,7 @@ public class BookStoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(BookRepository repository) {
+	public CommandLineRunner demo(BookRepository bookRepository, CategoryRepository categoryRepository) {
 		return (args) -> {
 
 			Book bk1 = new Book("ReactJs", "Duc Ngo", 2020, "1234567", 20);
@@ -26,10 +29,15 @@ public class BookStoreApplication {
 			Book bk3 = new Book("JavaScript", "Duc Ngo", 2021, "1234567", 22);
 			Book bk4 = new Book("NodeJs", "Duc Ngo", 2022, "1234567", 23);
 
-			repository.save(bk1);
-			repository.save(bk2);
-			repository.save(bk3);
-			repository.save(bk4);
+			bookRepository.save(bk1);
+			bookRepository.save(bk2);
+			bookRepository.save(bk3);
+			bookRepository.save(bk4);
+
+			Category c1 = new Category("Back-End");
+			Category c2 = new Category("Front-End");
+			categoryRepository.save(c1);
+			categoryRepository.save(c2);
 
 		};
 
